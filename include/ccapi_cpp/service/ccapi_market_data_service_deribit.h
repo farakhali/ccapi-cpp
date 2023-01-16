@@ -407,6 +407,11 @@ class MarketDataServiceDeribit : public MarketDataService {
     element.insert(CCAPI_UNDERLYING_SYMBOL, x["base_currency"].GetString());
     element.insert(CCAPI_ORDER_PRICE_INCREMENT, x["tick_size"].GetString());
     element.insert(CCAPI_ORDER_QUANTITY_INCREMENT, x["contract_size"].GetString());
+    element.insert(KIND_TYPE, x["kind"].GetString());
+    // auto it = x.FindMember("is_active");
+    // if (it != x.MemberEnd()) {
+    //   element.insert(KIND_TYPE, it->value.GetBool() ? "1" : "0");
+    // }
   }
   void convertTextMessageToMarketDataMessage(const Request& request, const std::string& textMessage, const TimePoint& timeReceived, Event& event,
                                              std::vector<MarketDataMessage>& marketDataMessageList) override {
